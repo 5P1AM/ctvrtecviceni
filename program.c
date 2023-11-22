@@ -15,19 +15,22 @@ int main() {
     // Seed random number generator with current time
     srand(time(NULL));
 
-    printf("%s\n", // Dataset header (must match the number of columns)
+	FILE *file = fopen("data.csv", "w");
+
+    fprintf(file, "%s\n", // Dataset header (must match the number of columns)
         "fce1,fce2,třída"
     );
 
     for (int i = 0; i < DATASET_SIZE; i++) {
 
-        printf(
+        fprintf(file,
             "%d,%d,%s\n",
             random_(0, 10),               //fce1      
             random_(12, 25),                  //fce2
             random_(0, 1) ? "\"y\"" : "\"n\""  //třída
         );
     }
+	fclose(file);
 
     return 0;
 }
